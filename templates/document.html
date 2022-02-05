@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Document {{ doc.id }}</h1>
+<div>
+    <b>Title: </b> {{ doc.title }}
+</div>
+<div>
+    {% if not doc.valid %}
+        <p style="color: darkred">Data has been modified</p>
+    {% endif %}
+    <b>Content: </b> {{ doc.data }}
+</div>
+<div>
+    <b>Nonce: </b> {{ doc.nonce }}
+</div>
+<div>
+    <b>Hash: </b> {{ doc.hash }}
+</div>
+<div>
+    <b>Previous: </b> {{ doc.prev }}
+</div>
+
+</body>
+</html>

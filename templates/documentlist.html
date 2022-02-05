@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> Documents</h1>
+<ul>
+    {%  for item in docs %}
+        <li><a href="/document/{{ item.id }}">{{ item.title }}</a> {% if item.valid == False %}X{% endif %}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

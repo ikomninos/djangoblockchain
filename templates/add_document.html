@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Add Document</h1>
+
+    <form action="/save/document" method="post" id="doc_form">
+        {% csrf_token %}
+        {{ form.as_ul }}
+    </form>
+    <button id="mine-btn" onclick="mine()">Mine</button>
+    <button id="submit-btn" onclick="save()" disabled>Submit</button>
+
+
+    <script>
+        function mine() {
+            doc = JSON.stringify({data: document.getElementById('id_data').value})
+            console.log(doc)
+            fetch('http://127.0.0.1:8000/mine', {method: 'post', headers: {'Content-Type':'application/json'}, body: doc})
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                document.getElementById('id_nonce').value = data['nonce']
+                document.getElementById('id_hash').value = data['hash']
+                document.getElementById('submit-btn').disabled = false;
+            })
+        }
+
+        function save() {
+            document.getElementById('doc_form').submit()
+        }
+
+    </script>
+
+
+</body>
+</html>
